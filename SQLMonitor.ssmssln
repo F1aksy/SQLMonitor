@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "DDLs", "DDLs\DDLs.ssmssqlproj", "{50666399-6019-48FC-8F2D-D374C87F9A57}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Permissions", "Permissions\Permissions.ssmssqlproj", "{45B8BCE2-C6A0-4A90-9760-ADA6F90BCB76}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Temp-Scripts", "Temp-Scripts\Temp-Scripts.ssmssqlproj", "{7ED3B209-76A3-48A5-8C31-4760BBDAA192}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "XEvent", "XEvent\XEvent.ssmssqlproj", "{346471F8-E161-47CB-AE5D-A766BE2B21E5}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "NoteBooks", "NoteBooks\NoteBooks.ssmssqlproj", "{717474F2-2815-4233-893F-AC2A0B0043F3}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "replication-latency-infra", "replication-latency-infra\replication-latency-infra.ssmssqlproj", "{C0977F35-60B1-4E4F-8205-95B982CCC5D8}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Sql-Queries", "Sql-Queries\Sql-Queries.ssmssqlproj", "{56209732-6D7E-48B0-8B12-60542A46533C}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SQLDBATools", "SQLDBATools\SQLDBATools.ssmssqlproj", "{747B93D0-331E-4FD2-9E47-8DDF2C8C1DBE}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Credential-Manager", "Credential-Manager\Credential-Manager.ssmssqlproj", "{0A5FBE5B-9E8D-4BF2-8A45-E2F2F54E5DF6}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Grafana-Dashboards", "Grafana-Dashboards\Grafana-Dashboards.ssmssqlproj", "{B8709E4E-F033-4E1C-A108-A3F52F522622}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Alerting", "Alerting\Alerting.ssmssqlproj", "{FD50C689-B82C-4567-A1B8-FD20792E9A73}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Inventory", "Inventory\Inventory.ssmssqlproj", "{D2134DE5-7115-43EF-828C-15557CAEF230}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SQLMonitor", "SQLMonitor\SQLMonitor.ssmssqlproj", "{A2809BF5-2DC1-4625-8138-85BD21CCC063}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "TSQLTextNormalizer", "TSQLTextNormalizer\TSQLTextNormalizer.ssmssqlproj", "{8361BF0D-D5D7-41F5-A572-E81A55DED3E0}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "z__POC__z", "z__POC__z\z__POC__z.ssmssqlproj", "{0C31F870-692A-460E-9B58-84F20276D137}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Volatile", "Volatile\Volatile.ssmssqlproj", "{1675219E-D16A-4EB4-B2C3-C78E5DC76671}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Sensitive", "Sensitive\Sensitive.ssmssqlproj", "{00FB5082-3D0F-4CCB-B70F-A9BAACC5551F}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Private", "Private\Private.ssmssqlproj", "{D47468B2-9BF5-4F7C-8F08-DC82FEECCE40}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Work", "Work\Work.ssmssqlproj", "{53237627-9F8C-44C3-8F0A-9464D74A220E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50666399-6019-48FC-8F2D-D374C87F9A57}.Default|Default.ActiveCfg = Default
+		{45B8BCE2-C6A0-4A90-9760-ADA6F90BCB76}.Default|Default.ActiveCfg = Default
+		{7ED3B209-76A3-48A5-8C31-4760BBDAA192}.Default|Default.ActiveCfg = Default
+		{346471F8-E161-47CB-AE5D-A766BE2B21E5}.Default|Default.ActiveCfg = Default
+		{717474F2-2815-4233-893F-AC2A0B0043F3}.Default|Default.ActiveCfg = Default
+		{C0977F35-60B1-4E4F-8205-95B982CCC5D8}.Default|Default.ActiveCfg = Default
+		{56209732-6D7E-48B0-8B12-60542A46533C}.Default|Default.ActiveCfg = Default
+		{747B93D0-331E-4FD2-9E47-8DDF2C8C1DBE}.Default|Default.ActiveCfg = Default
+		{0A5FBE5B-9E8D-4BF2-8A45-E2F2F54E5DF6}.Default|Default.ActiveCfg = Default
+		{B8709E4E-F033-4E1C-A108-A3F52F522622}.Default|Default.ActiveCfg = Default
+		{FD50C689-B82C-4567-A1B8-FD20792E9A73}.Default|Default.ActiveCfg = Default
+		{D2134DE5-7115-43EF-828C-15557CAEF230}.Default|Default.ActiveCfg = Default
+		{A2809BF5-2DC1-4625-8138-85BD21CCC063}.Default|Default.ActiveCfg = Default
+		{8361BF0D-D5D7-41F5-A572-E81A55DED3E0}.Default|Default.ActiveCfg = Default
+		{0C31F870-692A-460E-9B58-84F20276D137}.Default|Default.ActiveCfg = Default
+		{1675219E-D16A-4EB4-B2C3-C78E5DC76671}.Default|Default.ActiveCfg = Default
+		{00FB5082-3D0F-4CCB-B70F-A9BAACC5551F}.Default|Default.ActiveCfg = Default
+		{D47468B2-9BF5-4F7C-8F08-DC82FEECCE40}.Default|Default.ActiveCfg = Default
+		{9A52D128-0B39-4E4E-9D34-458D6B58B042}.Default|Default.ActiveCfg = Default
+		{53237627-9F8C-44C3-8F0A-9464D74A220E}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A76E9847-42CF-42C4-AF22-F90E0FFEE25E}
+	EndGlobalSection
+EndGlobal

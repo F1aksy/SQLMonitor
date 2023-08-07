@@ -1,0 +1,1561 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Monitor Server Using Live PerfMon Metrics",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 21,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "mssql",
+        "uid": "5Qr_lHw7z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 243,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "sqlserver_start_time_utc"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "os_uptime"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "major_version_number"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "minor_version_number"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "cpu_count"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "scheduler_count"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Is MS Supported"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "basic",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "false": {
+                            "color": "red",
+                            "index": 1,
+                            "text": "UnSupported"
+                          },
+                          "true": {
+                            "color": "green",
+                            "index": 0,
+                            "text": "Supported"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "total_physical_memory_kb"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "RAM"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "kbytes"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 219,
+          "options": {
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "9.4.7",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "declare @sql nvarchar(max);\nset quoted_identifier off;\nset @sql = \"\n/* $__dashboard */\n;with t_cte as (\n\tselect\tsrv_name, domain, host_name, product_version, major_version_number, minor_version_number, cpu_count, \n\t        scheduler_count, total_physical_memory_kb, os_start_time_utc, sqlserver_start_time_utc\n\t\t\t,Concat\n\t\t\t(\n\t\t\t\tRIGHT('000'+CAST(ISNULL((datediff(second,os_start_time_utc,GETUTCDATE()) / 3600 / 24), 0) AS VARCHAR(3)),3)\n\t\t\t\t,' '\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,os_start_time_utc,GETUTCDATE()) / 3600  % 24, 0) AS VARCHAR(2)),2)\n\t\t\t\t,':'\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,os_start_time_utc,GETUTCDATE()) / 60 % 60, 0) AS VARCHAR(2)),2)\n\t\t\t\t,':'\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,os_start_time_utc,GETUTCDATE()) % 3600 % 60, 0) AS VARCHAR(2)),2)\n\t\t\t) as [os_uptime]\n\t\t\t,Concat\n\t\t\t(\n\t\t\t\tRIGHT('000'+CAST(ISNULL((datediff(second,sqlserver_start_time_utc,GETUTCDATE()) / 3600 / 24), 0) AS VARCHAR(3)),3)\n\t\t\t\t,' '\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,sqlserver_start_time_utc,GETUTCDATE()) / 3600  % 24, 0) AS VARCHAR(2)),2)\n\t\t\t\t,':'\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,sqlserver_start_time_utc,GETUTCDATE()) / 60 % 60, 0) AS VARCHAR(2)),2)\n\t\t\t\t,':'\n\t\t\t\t,RIGHT('00'+CAST(ISNULL(datediff(second,sqlserver_start_time_utc,GETUTCDATE()) % 3600 % 60, 0) AS VARCHAR(2)),2)\n\t\t\t) as [sqlserver_uptime]\n\t\t\t,datediff(day,os_start_time_utc,GETUTCDATE()) as [os_uptime_days]\n\tfrom dbo.vw_all_server_info\n)\nselect  srv_name, domain, host_name, product_version, major_version_number, minor_version_number\n        ,[CPU (OS / SQL)] = convert(varchar,cpu_count)+' / '+convert(varchar,scheduler_count)\n        ,total_physical_memory_kb ,cpu_count, scheduler_count, [os_uptime_days], os_start_time_utc, sqlserver_start_time_utc, [os_uptime], [sqlserver_uptime]\n\t\t    ,[Is MS Supported] = case when c.MainstreamSupportEndDate < getdate() then convert(bit,0) else convert(bit,1) end\nfrom t_cte cte\nouter apply (\n\tselect\ttop 1 [MajorVersionNumber]\n\t\t\t\t--,[@server_minor_version_number] = @server_minor_version_number\n\t\t\t\t,[MinorVersionNumber]\n\t\t\t\t,[Branch]\n\t\t\t\t,[Url]\n\t\t\t\t,[ReleaseDate]\n\t\t\t\t,[MainstreamSupportEndDate]\n\t\t\t\t,[ExtendedSupportEndDate]\n\t\t\t\t,[MajorVersionName]\n\t\t\t\t,[MinorVersionName]\t  \n\t\tfrom [master].[dbo].[SqlServerVersions] as c\n\t\twhere [MajorVersionNumber] = cte.major_version_number\n\t\tand [MinorVersionNumber] <= cte.minor_version_number\n\t\torder by [MinorVersionNumber] desc\n) as c\nouter apply (\n\tselect\ttop 1 [MajorVersionNumber]\n\t\t\t--,[@server_minor_version_number] = @server_minor_version_number\n\t\t\t,[MinorVersionNumber]\n\t\t\t,[Branch]\n\t\t\t,[Url]\n\t\t\t,[ReleaseDate]\n\t\t\t,[MainstreamSupportEndDate]\n\t\t\t,[ExtendedSupportEndDate]\n\t\t\t,[MajorVersionName]\n\t\t\t,[MinorVersionName]\t  \n\tfrom [master].[dbo].[SqlServerVersions] as c\n\twhere [MajorVersionNumber] = cte.major_version_number\n\torder by [MinorVersionNumber] desc\n) as l;\n\";\nset quoted_identifier off;\n\nexec dbo.sp_executesql @sql;",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "All Servers - Basic Details",
+          "type": "table"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "5Qr_lHw7z"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "All Online Servers - Basic Info",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 848,
+      "panels": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  }
+                ]
+              },
+              "unit": "string"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byType",
+                  "options": "time"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "dateTimeAsIso"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": ".*__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "m"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green"
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 20
+                        },
+                        {
+                          "color": "red",
+                          "value": 40
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-text"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": ".*__latency_days"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "d"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green"
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 8
+                        },
+                        {
+                          "color": "red",
+                          "value": 15
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-text"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "srv_name"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "gradient",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "displayName",
+                    "value": "Server"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "blue"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "id": "links",
+                    "value": [
+                      {
+                        "targetBlank": true,
+                        "title": "Live Server Details",
+                        "url": "d/distributed_live_dashboard?var-server=${__data.fields.srv_name}"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "performance_counters__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "performance_counters"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "resource_consumption__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "resource_consumption"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "WhoIsActive__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "WhoIsActive"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "os_task_list__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "os_task_list_latency"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "disk_space__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "disk_space"
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green"
+                        },
+                        {
+                          "color": "#EAB839",
+                          "value": 60
+                        },
+                        {
+                          "color": "red",
+                          "value": 90
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "file_io_stats__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "file_io_stats"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "wait_stats__latency_minutes"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "wait_stats"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlitzIndex__latency_days"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "BlitzIndex"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlitzIndex_Mode0__latency_days"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "BlitzIndex_Mode0"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlitzIndex_Mode1__latency_days"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "BlitzIndex_Mode1"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "BlitzIndex_Mode4__latency_days"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "BlitzIndex_Mode4"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Issues"
+                },
+                "properties": [
+                  {
+                    "id": "custom.hidden",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 19,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "id": 850,
+          "options": {
+            "footer": {
+              "countRows": false,
+              "enablePagination": true,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "9.4.7",
+          "targets": [
+            {
+              "alias": "",
+              "datasource": {
+                "type": "mssql",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "hide": false,
+              "rawQuery": true,
+              "rawSql": "declare @_latency_minutes_threshold int = 20;\r\ndeclare @_latency_days_threshold int = 3;\r\ndeclare @t_servers_exception table (srv_name varchar(125));\r\n\r\ninsert @t_servers_exception -- list of servers that have permanent issues\r\nvalues ('MyNotExistingServerHavingIssue01'),('MyNotExistingServerHavingIssue02');\r\n\r\nselect\tcli.srv_name, id.jobs_server,\r\n\t\tcli.performance_counters__latency_minutes,\r\n\t\tresource_consumption__latency_minutes = case when (cli.resource_consumption__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20 and si.major_version_number >= 11) then cli.resource_consumption__latency_minutes \r\n\t\t\t\t\t\t\t\t\t\t\t\t\twhen cli.resource_consumption__latency_minutes > @_latency_minutes_threshold then @_latency_minutes_threshold-1\r\n\t\t\t\t\t\t\t\t\t\t\t\t\telse cli.resource_consumption__latency_minutes end,\r\n\t\tWhoIsActive__latency_minutes = case when cli.WhoIsActive__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20 then cli.WhoIsActive__latency_minutes \r\n\t\t\t\t\t\t\t\t\t\t\t\t\twhen cli.WhoIsActive__latency_minutes > @_latency_minutes_threshold then @_latency_minutes_threshold-1\r\n\t\t\t\t\t\t\t\t\t\t\t\t\telse cli.WhoIsActive__latency_minutes end,\r\n\t\tcli.os_task_list__latency_minutes,\r\n\t\tcli.disk_space__latency_minutes, \r\n\t\tcli.file_io_stats__latency_minutes,\r\n\t\tcli.sql_agent_job_stats__latency_minutes,\r\n\t\tcli.memory_clerks__latency_minutes,\r\n\t\tcli.wait_stats__latency_minutes,\r\n\t\tcli.BlitzIndex__latency_days,\r\n\t\tcli.BlitzIndex_Mode0__latency_days,\r\n\t\t--cli.BlitzIndex_Mode1__latency_days,\r\n\t\t--cli.BlitzIndex_Mode4__latency_days,\r\n\t\t--collection_time = DATEADD(mi, DATEDIFF(mi, getdate(), getutcdate()), cli.collection_time)\r\n\t\t[Issues] = (case when cli.performance_counters__latency_minutes > @_latency_minutes_threshold then 'performance_counters,' else '' end)+\r\n\t\t\t\t\t(case when cli.resource_consumption__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20 and si.major_version_number >= 11 then 'resource_consumption' else '' end)+\r\n\t\t\t\t\t(case when cli.WhoIsActive__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20 then 'WhoIsActive,' else '' end)+\r\n\t\t\t\t\t(case when cli.os_task_list__latency_minutes > @_latency_minutes_threshold then 'os_task_list,' else '' end)+\r\n\t\t\t\t\t(case when cli.disk_space__latency_minutes > @_latency_minutes_threshold*3 then 'disk_space,' else '' end)+\r\n\t\t\t\t\t(case when cli.file_io_stats__latency_minutes > @_latency_minutes_threshold*3 then 'file_io_stats,' else '' end)+\r\n\t\t\t\t\t(case when cli.wait_stats__latency_minutes > @_latency_minutes_threshold*2 then 'wait_stats,' else '' end)+\r\n\t\t\t\t\t(case when cli.sql_agent_job_stats__latency_minutes > @_latency_minutes_threshold*1.5 then 'sql_agent_job_stats,' else '' end)+\r\n\t\t\t\t\t(case when cli.memory_clerks__latency_minutes > @_latency_minutes_threshold then 'memory_clerks,' else '' end)+\r\n\t\t\t\t\t(case when cli.BlitzIndex__latency_days > @_latency_days_threshold then 'BlitzIndex,' else '' end)+\r\n\t\t\t\t\t(case when cli.BlitzIndex_Mode0__latency_days > @_latency_days_threshold*4 then 'BlitzIndex_Mode0,' else '' end)+\r\n\t\t\t\t\t(case when cli.BlitzIndex_Mode1__latency_days > @_latency_days_threshold*4 then 'BlitzIndex_Mode1,' else '' end)+\r\n\t\t\t\t\t(case when cli.BlitzIndex_Mode4__latency_days > @_latency_days_threshold*4 then 'BlitzIndex_Mode4,' else '' end)\r\n\t\t--,cli.host_name ,si.major_version_number ,si.product_version ,si.edition, vi.os_cpu, vi.sql_cpu\r\nfrom dbo.all_server_collection_latency_info cli\r\njoin dbo.all_server_stable_info si on si.srv_name = cli.srv_name\r\njoin dbo.all_server_volatile_info vi on vi.srv_name = cli.srv_name\r\nouter apply (select STUFF((select ', '+id.collector_powershell_jobs_server from (select distinct id.collector_powershell_jobs_server from dbo.instance_details id where id.sql_instance = cli.srv_name and id.host_name = cli.host_name) id for xml path('')), 1, 1, '') as jobs_server ) id\r\nwhere 1=1\r\nand (\tcli.performance_counters__latency_minutes > @_latency_minutes_threshold\r\n\t\tor (cli.resource_consumption__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20 and si.major_version_number >= 11)\r\n\t\tor (cli.WhoIsActive__latency_minutes > @_latency_minutes_threshold*2 and vi.sql_cpu > 20)\r\n\t\tor cli.os_task_list__latency_minutes > @_latency_minutes_threshold\r\n\t\tor cli.disk_space__latency_minutes > @_latency_minutes_threshold*3\r\n\t\tor cli.file_io_stats__latency_minutes > @_latency_minutes_threshold*3\r\n\t\tor cli.wait_stats__latency_minutes > @_latency_minutes_threshold*2\r\n\t\tor cli.BlitzIndex__latency_days > @_latency_days_threshold\r\n\t\tor cli.BlitzIndex_Mode0__latency_days > @_latency_days_threshold*4\r\n\t\t--or cli.BlitzIndex_Mode1__latency_days > @_latency_days_threshold*4\r\n\t\t--or cli.BlitzIndex_Mode4__latency_days > @_latency_days_threshold*4\r\n\t\tor cli.sql_agent_job_stats__latency_minutes > @_latency_minutes_threshold*1.5\r\n\t\tor cli.memory_clerks__latency_minutes > @_latency_minutes_threshold\r\n\t)\r\nand cli.srv_name not in (select e.srv_name from @t_servers_exception e);\r\n\r\n",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "Servers with Data Collection Issues",
+          "type": "table"
+        }
+      ],
+      "title": "Servers with Data Collection Issues",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 846,
+      "panels": [],
+      "repeat": "datasource",
+      "repeatDirection": "h",
+      "title": "CRITICAL - SQLInstance - OFFLINE",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "mode": "basic",
+              "type": "color-background"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 844,
+      "options": {
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "declare @sql nvarchar(max);\nset quoted_identifier off;\nset @sql = \"\n/* $__dashboard */\nselect sql_instance, [host_name], [tsql jobs server] = collector_tsql_jobs_server, \n\t\t[powershell jobs server] = collector_powershell_jobs_server, [perfmon data server] = data_destination_sql_instance, \n\t\tis_available, last_unavailability_time_utc\nfrom dbo.instance_details id\nwhere is_available = 0 and is_enabled = 1\n\";\nset quoted_identifier off;\n\nexec dbo.sp_executesql @sql;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "SQL Instances that are OFFLINE",
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "mssql",
+        "uid": "5Qr_lHw7z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 245,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "5Qr_lHw7z"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "All Servers - Health Metrics - Require ATTENTION",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "mssql",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "os_cpu"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "color"
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 70
+                    },
+                    {
+                      "color": "orange",
+                      "value": 80
+                    },
+                    {
+                      "color": "red",
+                      "value": 90
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "OS CPU"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sql_cpu"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "color"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 65
+                    },
+                    {
+                      "color": "orange",
+                      "value": 70
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "SQL CPU"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "waits_per_core_per_minute"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 180
+                    },
+                    {
+                      "color": "orange",
+                      "value": 240
+                    },
+                    {
+                      "color": "red",
+                      "value": 300
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Waits Per Core Per Minute"
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Wait Stats Dashboard",
+                    "url": "d/wait_stats?var-server=${__data.fields.srv_name}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "blocked_counts"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 1
+                    },
+                    {
+                      "color": "orange",
+                      "value": 5
+                    },
+                    {
+                      "color": "red",
+                      "value": 10
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Blocked Over '60' Seconds"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "blocked_duration_max_seconds"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "super-light-yellow",
+                      "value": 60
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 120
+                    },
+                    {
+                      "color": "super-light-orange",
+                      "value": 300
+                    },
+                    {
+                      "color": "orange",
+                      "value": 600
+                    },
+                    {
+                      "color": "red",
+                      "value": 1800
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Longest Blocking"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "available_physical_memory_kb"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Available Memory"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "kbytes"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 512000
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 2097152
+                    },
+                    {
+                      "color": "green",
+                      "value": 4194304
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "system_high_memory_signal_state"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden"
+              },
+              {
+                "id": "unit",
+                "value": "string"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "OS Memory State"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "physical_memory_in_use_kb"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Used SQL Memory"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "purple",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "kbytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "memory_grants_pending"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Memory Grant Pending"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "srv_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 127
+              },
+              {
+                "id": "displayName",
+                "value": "Server"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "blue",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Live Health",
+                    "url": "d/distributed_live_dashboard?var-server=${__data.fields.srv_name}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "connection_count"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "SQL Connections"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 800
+                    },
+                    {
+                      "color": "#EF843C",
+                      "value": 1000
+                    },
+                    {
+                      "color": "red",
+                      "value": 1200
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Server"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 189
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 842,
+      "options": {
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "",
+          "datasource": {
+            "type": "mssql",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "declare @os_cpu_threshold decimal(20,2) = 80;\ndeclare @sql_cpu_threshold decimal(20,2) = 70;\ndeclare @blocked_counts_threshold int = 1;\ndeclare @blocked_duration_max_seconds_threshold bigint = 60;\ndeclare @available_physical_memory_kb_threshold bigint = (4*1024*1024);\ndeclare @system_high_memory_signal_state_threshold varchar(20) = 'Low';\n--declare @physical_memory_in_use_kb_threshold decimal(20,2);\ndeclare @memory_grants_pending_threshold int = 1;\ndeclare @connection_count_threshold int = 1000;\ndeclare @waits_per_core_per_minute_threshold decimal(20,2) = 180;\n\ndeclare @sql nvarchar(max);\ndeclare @params nvarchar(max);\n\nset @params = N'@os_cpu_threshold decimal(20,2), @sql_cpu_threshold decimal(20,2), @blocked_counts_threshold int, \n\t\t\t\t@blocked_duration_max_seconds_threshold bigint, @available_physical_memory_kb_threshold bigint, \n\t\t\t\t@system_high_memory_signal_state_threshold varchar(20), @memory_grants_pending_threshold int, \n\t\t\t\t@connection_count_threshold int, @waits_per_core_per_minute_threshold decimal(20,2)';\n\nset quoted_identifier off;\nset @sql = \"\n;with t_cte as (\n\tselect\tsrv_name, os_cpu, sql_cpu, blocked_counts, blocked_duration_max_seconds, available_physical_memory_kb, system_high_memory_signal_state, physical_memory_in_use_kb, memory_grants_pending, connection_count, waits_per_core_per_minute\n\tfrom dbo.vw_all_server_info\n)\nselect  *\nfrom t_cte cte\nwhere 1=1\nand (   os_cpu >= @os_cpu_threshold\n    or  sql_cpu >= @sql_cpu_threshold \n    or  blocked_counts >= @blocked_counts_threshold\n    or  blocked_duration_max_seconds >= @blocked_duration_max_seconds_threshold\n    or  ( available_physical_memory_kb < @available_physical_memory_kb_threshold and system_high_memory_signal_state = @system_high_memory_signal_state_threshold )\n    or  memory_grants_pending > @memory_grants_pending_threshold\n    or  connection_count >= @connection_count_threshold\n    or  waits_per_core_per_minute > @waits_per_core_per_minute_threshold\n)\n\";\nset quoted_identifier off;\n\n--print @sql\nexec dbo.sp_executesql @sql, @params, @os_cpu_threshold, @sql_cpu_threshold, @blocked_counts_threshold, @blocked_duration_max_seconds_threshold, @available_physical_memory_kb_threshold, @system_high_memory_signal_state_threshold, @memory_grants_pending_threshold, @connection_count_threshold, @waits_per_core_per_minute_threshold;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Servers Need Help - Health Metrics @ ${collection_time_utc:date:YYYY-MM-DD HH.mm}",
+      "type": "table"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "mssql",
+        "uid": "5Qr_lHw7z"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 121,
+      "panels": [
+        {
+          "description": "",
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 19
+          },
+          "id": 119,
+          "links": [],
+          "options": {
+            "folderId": 1,
+            "maxItems": 10,
+            "query": "",
+            "showHeadings": false,
+            "showRecentlyViewed": false,
+            "showSearch": true,
+            "showStarred": false,
+            "tags": []
+          },
+          "pluginVersion": "9.0.2",
+          "title": "Other Dashboards",
+          "type": "dashlist"
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "mssql",
+            "uid": "5Qr_lHw7z"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Other Dashboards",
+      "type": "row"
+    }
+  ],
+  "refresh": "1m",
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "mssql",
+    "sqlmonitor"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "SqlServer",
+          "value": "SqlServer"
+        },
+        "description": "Inventory Server Name",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "mssql",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "mssql",
+          "uid": "${datasource}"
+        },
+        "definition": "declare @sql nvarchar(max);\nset quoted_identifier off;\nset @sql = \"\nselect distinct srvname = sql_instance from dbo.instance_details\nwhere is_available = 1 and is_enabled = 1\n\";\nset quoted_identifier off;\n\nexec dbo.sp_executesql @sql;",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sql Instance",
+        "multi": true,
+        "name": "server",
+        "options": [],
+        "query": "declare @sql nvarchar(max);\nset quoted_identifier off;\nset @sql = \"\nselect distinct srvname = sql_instance from dbo.instance_details\nwhere is_available = 1 and is_enabled = 1\n\";\nset quoted_identifier off;\n\nexec dbo.sp_executesql @sql;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "DBA",
+          "value": "DBA"
+        },
+        "datasource": {
+          "type": "mssql",
+          "uid": "${datasource}"
+        },
+        "definition": "SELECT DB_NAME() as [db_name]",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Inventory Database",
+        "multi": false,
+        "name": "inventory_db",
+        "options": [],
+        "query": "SELECT DB_NAME() as [db_name]",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1689395620579",
+          "value": "1689395620579"
+        },
+        "datasource": {
+          "type": "mssql",
+          "uid": "${datasource}"
+        },
+        "definition": "select collection_time_utc = DATEADD(mi, DATEDIFF(mi, getdate(), getutcdate()), max(collection_time)) from dbo.all_server_volatile_info",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Collection Time UTC",
+        "multi": false,
+        "name": "collection_time_utc",
+        "options": [],
+        "query": "select collection_time_utc = DATEADD(mi, DATEDIFF(mi, getdate(), getutcdate()), max(collection_time)) from dbo.all_server_volatile_info",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "30s",
+      "1m",
+      "2m",
+      "5m"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Monitoring - Live - All Servers",
+  "uid": "distributed_live_dashboard_all_servers",
+  "version": 9,
+  "weekStart": ""
+}

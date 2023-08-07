@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Temp-Scripts">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="(local):21L-LTPABL-1187\Ajay">
+          <Created>2022-11-11T13:42:27.5821988+05:30</Created>
+          <Type>SQL</Type>
+          <Server>(local)</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="172.31.25.106:E84947">
+          <Created>2022-05-24T09:32:13.0393293+05:30</Created>
+          <Type>SQL</Type>
+          <Server>172.31.25.106</Server>
+          <UserName>E84947</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="196.1.115.167:E84947">
+          <Created>2022-08-22T10:05:42.9287434+05:30</Created>
+          <Type>SQL</Type>
+          <Server>196.1.115.167</Server>
+          <UserName>E84947</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="196.1.115.195:E84947">
+          <Created>2022-08-12T09:14:37.5216804+05:30</Created>
+          <Type>SQL</Type>
+          <Server>196.1.115.195</Server>
+          <UserName>E84947</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="196.1.115.196:E84947">
+          <Created>2022-08-26T17:02:32.4565146+05:30</Created>
+          <Type>SQL</Type>
+          <Server>196.1.115.196</Server>
+          <UserName>E84947</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="Localhost:21L-LTPABL-1187\Ajay">
+          <Created>2022-04-27T21:59:21.1315078+05:30</Created>
+          <Type>SQL</Type>
+          <Server>Localhost</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>tempdb</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="SqlPractice:21L-LTPABL-1187\Ajay">
+          <Created>2022-11-10T14:44:02.2012778+05:30</Created>
+          <Type>SQL</Type>
+          <Server>SqlPractice</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>DBA</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="SqlProd1:21L-LTPABL-1187\Ajay">
+          <Created>2022-10-10T22:11:13.9722189+05:30</Created>
+          <Type>SQL</Type>
+          <Server>SqlProd1</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>DBA</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+        <ConnectionNode Name="WORKSTATION:21L-LTPABL-1187\Ajay">
+          <Created>2022-09-11T13:54:28.4063405+05:30</Created>
+          <Type>SQL</Type>
+          <Server>WORKSTATION</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>master</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="add-datetime2-partitions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>add-datetime2-partitions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="add-datetime-partitions.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>add-datetime-partitions.sql</FullPath>
+        </FileNode>
+        <FileNode Name="approach.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:Localhost:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>Localhost</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>approach.sql</FullPath>
+        </FileNode>
+        <FileNode Name="check-domain-ip-hostname.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>check-domain-ip-hostname.sql</FullPath>
+        </FileNode>
+        <FileNode Name="conversion-status.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:Localhost:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>Localhost</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>conversion-status.sql</FullPath>
+        </FileNode>
+        <FileNode Name="grafana-variable-replacement.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>grafana-variable-replacement.sql</FullPath>
+        </FileNode>
+        <FileNode Name="INS-dbo.sql_agent_job_thresholds.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>INS-dbo.sql_agent_job_thresholds.sql</FullPath>
+        </FileNode>
+        <FileNode Name="inventory.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:Localhost:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>Localhost</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>inventory.sql</FullPath>
+        </FileNode>
+        <FileNode Name="performance_counters.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>performance_counters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Add-Fetch-Credentials.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>QRY-Add-Fetch-Credentials.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-BlitzCache-Result.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>QRY-BlitzCache-Result.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-BlitzCache-Usages.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-BlitzCache-Usages.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Drive-IO-Stats.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SqlPractice:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SqlPractice</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>QRY-Drive-IO-Stats.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Drive-IO-Stats-Selective.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SqlPractice:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SqlPractice</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>QRY-Drive-IO-Stats-Selective.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-file_io_stats-Histogram.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>QRY-file_io_stats-Histogram.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Find-Table-Queries-RC-Infra.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-Find-Table-Queries-RC-Infra.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Get-Statistics-Info.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-Get-Statistics-Info.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Index-Existence-check.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-Index-Existence-check.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-sp_BlitzIndex-PT.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-sp_BlitzIndex-PT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QRY-Validate-Data.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:196.1.115.196:False:E84947</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>196.1.115.196</AssociatedConnSrvName>
+          <AssociatedConnUserName>E84947</AssociatedConnUserName>
+          <FullPath>QRY-Validate-Data.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SCH-[resource_consumption_queries].sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SCH-[resource_consumption_queries].sql</FullPath>
+        </FileNode>
+        <FileNode Name="SCH-[sp_HumanEvents].sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>SCH-[sp_HumanEvents].sql</FullPath>
+        </FileNode>
+        <FileNode Name="SCH-[usp_collect_xevents_resource_consumption]-Partitioned.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:Localhost:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>Localhost</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SCH-[usp_collect_xevents_resource_consumption]-Partitioned.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(local):True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(local)</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="vw_file_io_stats_deltas.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:SqlPractice:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>SqlPractice</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>vw_file_io_stats_deltas.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
